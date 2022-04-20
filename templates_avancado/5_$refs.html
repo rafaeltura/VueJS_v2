@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="../assets/vue.js"></script>
+
+    <title>Vue 2 - Avançado - 5</title>
+
+</head>
+<body>
+    <div id="app">
+        <h3>$REFS</h3>
+        <p>
+            Referenciando elementos HTML com $REFS
+        </p>
+        
+        <ul>
+            <li>Representa uma propriedade do vue que nos permite referenciar elementos html e seus elementos filhos, é uma forma de pinçar esses elementos diretamente do DOM para alguma finalidade. É semelhante a seleção dos elementos html, que normalmente, é feita pelo js ou por meio do jquery.</li>
+            <li>
+                Objeto, cuja as chaves, irão apontar para o elemento html que podemos selecionar.
+                Para isso, deve-se add um atributo do próprio Vue <code>ref</code> no elemento html
+            </li>
+            <li>
+                Essa manipulação, por meio do $refs, não é reativa
+            </li>
+        </ul>
+        <hr />
+        
+        <span>Nome: </span>
+        <input type="text" ref="nome"> <br />
+
+        <button @click="cadastrar()">Cadastrar</button>
+
+        <hr />
+
+        <form ref="formulario">
+            <span>Nome: </span>
+            <input type="text"> <br />
+            <span>Comentário: </span>
+            <textarea cols="40" rows="20"></textarea> <br />
+            <button @click.prevent="cadastrar2()">Cadastrar</button>
+        </form>
+
+        <hr />
+
+        <p v-for="res in resultado">{{ res }}</p>
+
+
+    </div>
+    
+    <script>
+        let vue_model_1 = new Vue(
+            {
+                el: app,
+                data: {
+                    resultado: []
+                },
+                methods: {
+                    cadastrar () {
+                        console.log(this.$refs.nome.value);
+                    },
+                    cadastrar2 () {
+                        // console.log(this.$refs.formulario);
+                        // this.$refs.formulario[1].value = 'teste'
+                        this.resultado.push(`${this.$refs.formulario[0].value} comentou "${this.$refs.formulario[1].value}"`);
+
+                        this.limparForm();
+                    },
+                    limparForm () {
+                        this.$refs.formulario[0].value = '';
+                        this.$refs.formulario[0].focus();
+                        this.$refs.formulario[1].value = '';
+                    }
+                }
+            }
+        );
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="../assets/vue.js"></script>
+
+    <title>Vue 2 - Avançado - 4</title>
+
+</head>
+<body>
+    <div id="app">
+        <h3>Style com propriedade COMPUTED vue</h3>
+        <p>
+            Utilizando a propriedade COMPUTED para definir estilos visuais inline(style), por meio da diretiva V-BIND. 
+        </p>
+        
+        <ul>
+            
+        </ul>
+        <hr />
+
+        <h1>Manipulando STYLE com propriedade COMPUTED VUEJS</h1>
+        <div :style="aplicarEstilo">
+            Definindo styles com propriedade COMPUTED
+        </div>
+        <button @click="tamanhoFonte += 5">Aumentar Tamanho Fonte</button>
+    </div>
+    
+    <script>
+        let vue_model_1 = new Vue(
+            {
+                el: app,
+                data: {
+                    tamanhoFonte: 10
+                },
+                computed: {
+                    aplicarEstilo () {
+
+                        const largura = Math.floor( (Math.random() * 100) + 100 );
+                        return {
+                            backgroundColor: 'blue',
+                            width: `${largura}px`,
+                            height: '150px',
+                            padding: '10px',
+                            fontSize: `${this.tamanhoFonte}px`
+                        }
+                    }
+                }
+            }
+        );
+    </script>
+</body>
+</html>

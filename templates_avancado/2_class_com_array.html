@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="../assets/vue.js"></script>
+
+    <title>Vue 2 - Avançado - 2</title>
+
+    <style>
+        .vermelho {
+            background-color: red;
+        }
+        .texto-branco {
+            color: white;
+        }
+        .destaque {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h3>Class com ARRAY vue</h3>
+        <p>
+            Utilizando array para definir estilos visuais (css/class) no atributo class, por meio da diretiva V-BIND. 
+        </p>
+        
+        <ul>
+            <li>
+                O Vue não permite o seguinte código <code>:class="estilo1 estilo2 estilo3"</code>, visto que, cada 'estilo' representa uma chave no objeto vue. Caso, queira passar mais de um estilo para a mesma tag, então pode-se utilizar a dotação de array dentro do atributo class do html, <code>:class="[estilo1, estilo2, estilo3]"</code>
+            </li>
+            <li>Tbm pode ser mesclada a aplicação da class. Exemplo, <code>:class="[estilo1, { 'texto-branco': false, destaque: ehDestaque }]"</code></li>
+        </ul>
+        <hr />
+
+        <h1>Manipulando CSS com ARRAY VUEJS</h1>
+        <p :class="[estilo1, estilo2, estilo3]">
+            Definindo classes com arrays
+        </p>
+        <p :class="[estilo1, { 'texto-branco': false, destaque: ehDestaque } ]">
+            Definindo classes com arrays e objeto
+        </p>
+        <button @click="estilo1 = estilo1 ? '' : 'vermelho'">
+            Mudar estilo1 do array
+        </button> <br/>
+        <button @click="ehDestaque = !ehDestaque">
+            Mudar destaque do objeto dentro do array
+        </button> <br/>
+    </div>
+    
+    <script>
+        let vue_model_1 = new Vue(
+            {
+                el: app,
+                data: {
+                    estilo1: 'vermelho',
+                    estilo2: 'texto-branco',
+                    estilo3: 'destaque',
+                    ehDestaque: false,
+                }
+            }
+        );
+    </script>
+</body>
+</html>

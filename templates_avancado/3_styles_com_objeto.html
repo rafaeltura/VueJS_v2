@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="../assets/vue.js"></script>
+
+    <title>Vue 2 - Avançado - 3</title>
+
+</head>
+<body>
+    <div id="app">
+        <h3>Style com objeto vue</h3>
+        <p>
+            Utilizando objetos para definir estilos visuais inline(style), por meio da diretiva V-BIND. 
+        </p>
+        
+        <ul>
+            <li>Pode-se criar um objeto diretamente no atributo style do html, onde a chave será o nome da propriedade css e o valor será de fato um valor, não um boolean como com a class.</li>
+            <li>
+                Quando o style possui uma dotação a qual não pode ser aplicada a uma chave de objeto, então utiliza-se aspas no nome dessa chave ou o padrão camelCase.
+            </li>
+            <li>
+                É possível criar chaves no objeto data do vue para controlar cada style, ou digitar diretamente o valor para cada chave do objeto criado no atributo style do html.
+            </li>
+        </ul>
+        <hr />
+
+        <h1>Manipulando STYLE com objeto VUEJS</h1>
+        <div :style="{ 
+            'background-color': background, 
+            width: width + 'px', 
+            heigth: '100px',
+            padding: '10px',
+            fontSize: '16px'
+        }">
+            Definindo styles com objetos
+        </div>
+        <button @click="background = 'red'">Mudar para vermelho</button> <br />
+        <button @click="background = 'green'">Mudar para verde</button> <br />
+    </div>
+    
+    <script>
+        let vue_model_1 = new Vue(
+            {
+                el: app,
+                data: {
+                    background: 'green',
+                    width: 200,
+                }
+            }
+        );
+    </script>
+</body>
+</html>

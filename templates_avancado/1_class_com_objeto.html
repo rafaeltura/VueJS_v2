@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="../assets/vue.js"></script>
+
+    <title>Vue 2 - Avançado - 1</title>
+
+    <style>
+        .vermelho {
+            background-color: red;
+        }
+        .texto-branco {
+            color: white;
+        }
+        .destaque {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h3>Class com objeto vue</h3>
+        <p>
+            Utilizando objetos para definir estilos visuais (css/class) no atributo class, por meio da diretiva V-BIND. 
+        </p>
+        
+        <ul>
+            <li>Pode-se criar um objeto diretamente no atributo class do html, onde a chave será o nome da classe css e o valor será um boolean, sendo true para aplicar e false para não aplicar o estilo.</li>
+            <li>
+                Quando a classe css possui uma dotação a qual não pode ser aplicada a uma chave de objeto, então utiliza-se aspas no nome dessa chave.
+            </li>
+            <li>
+                É possível criar chaves no objeto data do vue para controlar cada estilo css, ou digitar diretamente o boolean para cada chave do objeto criado no atributo class do html.
+            </li>
+        </ul>
+        <hr />
+
+        <h1>Manipulando CSS com objeto VUEJS</h1>
+        <p :class="{ 
+            vermelho: ehVermelho, 
+            'texto-branco': ehTextoBranco, 
+            destaque: ehDestaque
+        }">
+            Definindo classes com objetos
+        </p>
+
+        <button @click="ehVermelho = !ehVermelho">
+            <span v-text="ehVermelho ? 'Remover background-color' : 'Aplicar background-color'">
+            </span>
+        </button> <br />
+        <button @click="ehTextoBranco = !ehTextoBranco">
+            <span v-text="ehTextoBranco ? 'Remover cor do texto' : 'Aplicar cor no texto'">
+            </span>
+        </button> <br />
+        <button @click="ehDestaque = !ehDestaque">
+            <span v-text="ehDestaque ? 'Remover destaque' : 'Aplicar destaque'">
+            </span>
+        </button>
+    </div>
+    
+    <script>
+        let vue_model_1 = new Vue(
+            {
+                el: app,
+                data: {
+                    ehVermelho: false,
+                    ehTextoBranco: false,
+                    ehDestaque: false
+                }
+            }
+        );
+    </script>
+</body>
+</html>

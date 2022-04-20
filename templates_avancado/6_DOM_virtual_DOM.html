@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="../assets/vue.js"></script>
+
+    <title>Vue 2 - Avançado - 6</title>
+
+</head>
+<body>
+    <div id="app">
+        <h3>DOM e Virtual DOM</h3>
+        <p>
+            Diferença entre eles
+        </p>
+        
+        <ul>
+            <li>
+                DOM é uma interface que representa como os documentos html são lidfos pelos browser, após o browser ler um doc html, ele cria um objeto, que é a DOM, que contem uma representação estruturada do doc html e define formas de como essa estrutura pode ser acessada.
+                Com essa estrutura definida no DOM, podemos, por meio do JS, acessar e manipular essas estruturas. 
+            </li>
+            <li>
+                Virtual DOm, é um conceito de programação, trata-se de uma representação virtual do DOM. Essa representação é mantida em memória em js, e é sincronizada com o DOM real. Esse sincronismo é feito por meio de uma lib ou framework JS, como pro exemplo, o vueJS. Portanto, o virtual DOM não é algo específico do vueJS, outros frameworks tbm utilizam esse recurso.
+            </li>
+            <li>
+                Qual benefício de ter a virtual DOM? manipular os elementos html diretamente na DOM real é uma tarefa onerosa no ponto de vista de processamento e também verbosa no ponto de vista de desenvolvimento. Podemos pensar que a virtual DOM é uma versão mais leve do DOM, onde todas as alteraçẽos serão feitas,e apenas as diferenças que representam uma alteração nos elementos html é que serão pontualmente atualizadas no DOM real. Ou seja, o virtual DOM é uma camada mais rápida para ajustar os elementos html, de modo que, as diferenças pontuais serão de fato sincronizadas com o DOM real. E apenas sincroniza informações que afetam o visual do dom, caso contrário não é feito essa atualização.
+            </li>
+            <li>
+                Quando estamos utilizando uma virtual DOM as atualizações de elementos html devem sempre ser feitas por ela, pois, se alterados diretamente na DOM podem ocorrer comportamentos inesperados.
+            </li>
+        </ul>
+        <hr />
+
+        <h3>Simulando um comportamento inesperado</h3>
+        <ul>
+            <li>
+                Quando modificado um elemento html, que possui uma interpolação, por meio direto da DOM, essa interpolação é perdida. No exemplo abaixo se add os @ pela virtual DOM e depois pela DOM, qndo for tentar add pela virtual DOM novamente essa referência foi substituida pelo texto manipulado direto pela DOM, ou seja, a referência é perdida, então visualmente essas mudanças feitas pela virtual dom não são mais carregadas, apenas fica visivel pelo JS.
+            </li>
+            <li>
+                Além disso, as informações ficam diferentes nas DOM's. A virtual DOM só irá ter acesso ao que ela mesma inseriu, já a DOM terá acesso a informação, digamos, mais correta.
+            </li>
+            <li>
+                Para não ocorrer a perda a interpolação, pode-se usar a diretiva v-text no elemento html, mas como comentado acima, as informações ficarão divergentes.
+            </li>
+        </ul>
+        <p id="capturar">{{ texto }}</p>
+        <button @click.prevent="modificarTextoVirtualDOM()">Adicionar @ V.D.</button> <br />
+        <button onclick="modificarTextoDOM()">Adicionar @ DOM</button>
+    </div>
+    
+    <script>
+        function modificarTextoDOM () {
+            document.querySelector('#capturar').innerText += '@';
+        }
+        let vue_model_1 = new Vue(
+            {
+                el: app,
+                data: {
+                    texto: 'DOM e Virtual DOM'
+                },
+                methods: {
+                    modificarTextoVirtualDOM () {
+                        this.texto += '@';
+                    }
+                }
+            }
+        );
+    </script>
+</body>
+</html>

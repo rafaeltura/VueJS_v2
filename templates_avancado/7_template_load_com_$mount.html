@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="../assets/vue.js"></script>
+
+    <title>Vue 2 - Avançado - 7</title>
+
+</head>
+<body>
+    <!-- <div id="app">
+        <h1> {{ texto1 }}</h1>
+        <p>
+            {{ texto2 }}
+        </p>
+        
+        <ul>
+            <li>A principal forma de realizar isso é através da chave EL da instância VUE</li>
+            <li>Alternativas pelo $mount ou propriedade template</li>
+        </ul>
+        <hr />
+
+        
+    </div> -->
+
+    <div id="app">
+
+    </div>
+    
+    <script>
+
+        let vue_model_1 = new Vue(
+            {
+                template: `
+                    <div>
+                        <h1> {{ texto1 }}</h1>
+                        <p>
+                            {{ texto2 }}
+                        </p>
+                        
+                        <ul>
+                            <li>A principal forma de realizar isso é através da chave EL da instância VUE</li>
+                            <li>Alternativas pelo $mount ou propriedade template</li>
+                        </ul>
+                        <hr />
+
+                
+                    </div>`
+                ,
+                data: {
+                    texto1: 'Template',
+                    texto2: 'formas alternativas de carrega-lo'
+                },
+            }
+        );
+        
+        // com $MOUNT e com $Mount junto com template
+        vue_model_1.$mount('#app');
+    </script>
+</body>
+</html>
