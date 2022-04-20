@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="../assets/vue.js"></script>
+
+    <title>Vue 2 - 2.3</title>
+</head>
+<body>
+    <div id="app">
+        <p>Resultado da function somar convencional sem parenteses: {{ somar }}</p>
+        <p>Resultado da function somar convencional: {{ somar() }}</p>
+        <p>Resultado da function subtrair anônima sem parenteses: {{ subtrair }}</p>
+        <p>Resultado da function subtrair anônima: {{ subtrair() }}</p>
+        <p>Resultado da function multiplicar anônima sem parenteses: {{ multiplicar }}</p>
+        <p>Resultado da function multiplicar anônima: {{ multiplicar() }}</p>
+        <p>Resultado da function dividir de forma enxuta sem parenteses: {{ dividir }}</p>
+        <p>Resultado da function dividir de forma enxuta: {{ dividir() }}</p>
+        <p>Chamada de uma function de nome teste com a mesma nomenclatura em uma chave do data, irá ocasionar erro {{ teste() }}</p>
+    </div>
+    
+    <script>
+        let vue_model_1 = new Vue(
+            {
+                el: '#app', 
+                data: { 
+                    n1: 4,
+                    n2: 2,
+                    teste: 'Teste data',
+                },
+                methods: { // utilizando atributos do obj data dentro do obj methods
+                    somar: function somar() { //convencional
+                        return (this.n1 + this.n2);
+                    },
+                    subtrair: function () { //anônima
+                        return (this.n1 - this.n2);
+                    },
+                    multiplicar: () => { //arrow function
+                        // o this de dentro de uma arrow function muda, ou seja, o contexto lexico é outro, nesse caso o contexto de this é window. Elas fazem escopo global ou do escopo da função em que estão enroladas. Não fazem escopo ao objeto que estão envolvidas.
+                        return (this.n1 * this.n2);
+                    },
+                    dividir() { //enxuta
+                        return (this.n1 / this.n2);
+                    },
+                    teste: function teste() {
+                        return 'Function';
+                    }
+                }
+            }
+        );
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="../assets/vue.js"></script>
+
+    <title>Vue 2 - 8</title>
+    <style>
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h3>Diretiva V-SHOW</h3>
+        <p>
+            O elemento sempre será renderizado com v-show, porém, será ou não exibido em tela. Mas o elemento html existirá, diferentemente do que ocorre com o v-if, o qual o elemento html só existirá se a condição for satisfeita.
+            Ideal para quando se tem um bloco de código o qual não possui informação sensível e pode ficar apenas oculto, pois, dessa forma, a renderização é mais rápida.
+        </p>
+        
+        <hr />
+
+        <p @mouseover="exibirTextoAjuda = true" @mouseout="exibirTextoAjuda = false">Exemplo de Tooltip</p>
+        <div v-show="exibirTextoAjuda">
+            <h3>
+                Título da Ajuda
+            </h3>
+            <p>
+                Conteúdo texto ajuda
+            </p>
+        </div>
+    </div>
+    
+    <script>
+        let vue_model_1 = new Vue(
+            {
+                el: '#app', 
+                data: {
+                    exibirTextoAjuda: false
+                },
+                methods: {
+
+                }
+            }
+        );
+    </script>
+</body>
+</html>

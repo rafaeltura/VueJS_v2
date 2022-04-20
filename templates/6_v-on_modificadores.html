@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="../assets/vue.js"></script>
+
+    <title>Vue 2 - 6</title>
+    <style>
+        .verde {
+            color: rgb(19, 85, 19);
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h3>Entendendo a diretiva V-ON ou @ - continuação</h3>
+        <p>
+            
+            <ul>
+                <li>Neste exemplo será visto como utilizar os modificadores dos eventos. Os eventos, por exemplo, <code>click, keyup, key, etc</code>, possuem seus próprios modificadores, como por exemplo, <code>prevent, once, [tecla do teclado], ...</code> </li>
+            </ul>
+        </p>
+        <hr />
+        <p>{{ msg }}</p>
+        <a 
+            href="www.google.com.br" 
+            target="_blank"
+            @click="comportamentoPadrao()"
+        >
+            comportamento padrão
+        </a>
+        <br>
+        <a 
+            href="www.google.com.br" 
+            target="_blank"
+            @click.prevent="comportamentoPrevenido()"
+        >
+            comportamento prevenido
+        </a>
+        <br />
+        <button @click.prevent.once="apenasUmaVez()">Apenas uma vez</button>
+        <button @click.prevent="semLimite()">Sem limite</button>
+        <hr />
+        <input type="text" @keyup="capturandoTeclas($event)" />
+        <span>Tecla capturada: {{ teclas }}</span>
+        <input type="text" @keyup.a.b.c="capturandoTeclas($event)" />
+        <span>Capturará apenas teclas a, b ou c: {{ teclas }}</span>
+        <input type="text" @keyup.Shift.Enter="capturandoTeclas($event)" />
+        <span>Capturará apenas teclas Shift e Enter: {{ teclas }}</span>
+    </div>
+    
+    <script>
+        let vue_model_1 = new Vue(
+            {
+                el: '#app', 
+                data: {
+                    msg: '',
+                    cliqueUnico: 0,
+                    cliques: 0,
+                    teclas: '',
+                },
+                methods: {
+                    comportamentoPadrao () {
+                        this.msg = 'Utilizado o Comportamento Padrão da tag a'
+                    },
+                    comportamentoPrevenido () {
+                        this.msg = 'Prevenindo o comportamento da tag a'
+                    },
+                    apenasUmaVez () {
+                        this.cliqueUnico++;
+                        this.msg = `Quantidade de cliques 'únicos': ${this.cliqueUnico}`;
+                    },
+                    semLimite () {
+                        this.cliques++;
+                        this.msg = `Quantidade de cliques: ${this.cliques}`;
+                    },
+                    capturandoTeclas (event) {
+                        this.teclas = event.key;
+                    }
+                }
+            }
+        );
+    </script>
+</body>
+</html>

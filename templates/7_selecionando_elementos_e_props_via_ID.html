@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="../assets/vue.js"></script>
+
+    <title>Vue 2 - 7</title>
+    <style>
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h3>Selecionando elementos HTML e suas propriedades por ID</h3>
+        <p>
+            
+            <ul>
+                <li>Neste exemplo será visto como utilizar o ID de um elemento filho para captura-lo sem necessidade de utilização do js, apenas digitando a descrição do ID
+                </li>
+                <li>Não necessariamente precisa de uma ação para selecionar, apenas digitar como se fosse uma variável já declarada.</li>
+            </ul>
+        </p>
+        <hr />
+        <input type="text" id="inputTexto" />
+        <select id="opcoes">
+            <option value="A">Opção A</option>
+            <option value="B">Opção B</option>
+            <option value="C">Opção C</option>
+        </select>
+        <p id="paragrafo" style="color: red">Paragrafo</p>
+        <div id="bloco">
+            Aqui um bloco de texto
+        </div>
+        <button @click="selecionarElementoFilho()">Selecionar elementos filhos de app</button>
+        
+    </div>
+    
+    <script>
+        let vue_model_1 = new Vue(
+            {
+                el: '#app', 
+                data: {},
+                methods: {
+                    selecionarElementoFilho () {
+                        console.log('input:', inputTexto);
+                        console.log('select:', opcoes);
+                        console.log('select selecionado:', opcoes.value);
+                        console.log('paragrafo style:', paragrafo.style.color);
+                        console.log('bloco:', bloco.innerHTML);
+                    }
+                }
+            }
+        );
+    </script>
+</body>
+</html>

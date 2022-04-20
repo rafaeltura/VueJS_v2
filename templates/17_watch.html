@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="../assets/vue.js"></script>
+
+    <title>Vue 2 - 17</title>
+    <style>
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h3>Propriedade WATCH </h3>
+        <p>
+            Propriedade observadora. <br>
+            Permite literalmente assistir por mudanças que são feitas nos atributos da instância do vue, sempre que existir uma mudança de estado em um atributo que está sendo observado, então uma ação é automaticamente disparada, basicamente, ela nos possibilita a reagir a alterçoes de dados, sendo que neste momento, pode ser recuperado o dado atualizado e a versão mais antiga desse mesmo dado.
+        </p>
+        
+        <ul>
+            <li>Os métodos utilizados nesta propriedade, devem receber os mesmos nomes que foram definidos no data da instância vue</li>
+            <li>Permite capturar o valor novo e o valor antigo, nessa ordem, como parâmetros do método criado</li>
+            <li>Normalmente utilizado com operações assincronas ou complexas, antes de permitir a alteração do atributo</li>
+        </ul>
+
+        <hr />
+
+        <span>Paciente:</span> <input type="text" v-model="paciente"> <br />
+
+        <p v-for="( { nome, idade } ) in listagemPacientes">{{ nome }} - {{ idade }} anos</p>
+
+       
+
+    </div>
+    
+    <script>
+        let vue_model_1 = new Vue(
+            {
+                el: '#app', 
+                data: {
+                    paciente: '',
+                    listPacientes: [
+                        {
+                            nome: 'João da Silva',
+                            idade: 52
+                        },
+                        {
+                            nome: 'Jorge Flores',
+                            idade: 34
+                        },
+                        {
+                            nome: 'Junior de Oliveira',
+                            idade: 67
+                        },
+                        {
+                            nome: 'Rafael Tura',
+                            idade: 31
+                        },
+                        {
+                            nome: 'Raphael Ceron',
+                            idade: 83
+                        }
+                    ],
+                    listagemPacientes: []
+                },
+                methods: {},
+                computed: {},
+                watch: {
+                    paciente (valorNovo, valorAntigo) {
+                        console.log('Valor novo: ' + valorNovo, 'Valor Antigo: ' + valorAntigo);
+                        this.listagemPacientes = this.listPacientes.filter( 
+                            ( { nome } ) => nome.match(valorNovo) 
+                        );
+                    }
+                }
+            }
+        );
+    </script>
+</body>
+</html>

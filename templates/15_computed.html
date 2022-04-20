@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="../assets/vue.js"></script>
+
+    <title>Vue 2 - 15</title>
+    <style>
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h3>COMPUTED</h3>
+        <p>
+            A propriedade <code>Computed</code> é definida no objeto literal e encaminhado como parâmetro pra instância do vue.
+        </p>
+        
+        <ul>
+            <li>
+                Basicamente as propriedades computed são métodos que retornam valores formados dinamicamente, esses métodos eles são utilizados para minimizar a aplicação de lógica dentro das expressões continas nos templates trazendo-a para dentro da instância do vue.
+            </li>
+            <li>
+                Para utiliza-lo não é necessário os <code>()</code> na function computed.
+            </li>
+            <li>
+                A diferença entre methods e computed: <br />
+                <code>Methods</code> são destinados para serem utilizados na formação de atributos dinâmicos. <br />
+                <code>Computed</code> são destinados para serem utilizados quando já há dados formados e a partir deles deseja-se fazer uma sub formação, dessa forma, a lógica não fica em html.
+            </li>
+        </ul>
+
+        <hr />
+
+        <h4>Adicionar Pacientes</h4>
+        <span>Nome:</span><input type="text" id="inputNome" /> <br/>
+        <span>Idade:</span><input type="text" id="inputIdade" /> <br/>
+        <span>Plano:</span><input type="text" id="inputPlano" /> <br/>
+        <button @click="adicionarPaciente()">Adicionar</button>
+
+        <hr />
+
+        <h5>Último paciente cadastrado</h5>
+        <p v-html="ultimoPacienteCadastrado"></p>
+        
+        <hr />
+
+        <h4>Lista de pacientes do plano Ouro</h4>
+        <p v-for="( { nome, idade } ) in pacientesPlanoOuro">{{ nome }} - {{ idade }}</p>
+
+        <hr />
+        
+        <h4>Lista de pacientes</h4>
+        <p v-for="( { nome } ) in pacientes">{{ nome }}</p>
+    </div>
+    
+    <script>
+        let vue_model_1 = new Vue(
+            {
+                el: '#app', 
+                data: {
+                    pacientes: [],
+                },
+                methods: {
+                    adicionarPaciente () {
+                        this.pacientes.push({ 
+                            nome: inputNome.value, 
+                            idade: inputIdade.value, 
+                            plano: inputPlano.value
+                        });
+                    }
+                },
+                computed: {
+                    ultimoPacienteCadastrado () {
+                        if(this.pacientes.length > 0){
+                            ({ nome, idade, plano } = this.pacientes[ this.pacientes.length - 1 ]);
+                            return `Paciente: ${nome} <br /> Idade: ${idade} <br /> Plano: ${plano}`;
+                        }
+                        return '';
+                    },
+                    pacientesPlanoOuro () {
+                        return this.pacientes.filter( ( { plano } ) => plano == 'Ouro');
+                    }
+                }
+            }
+        );
+    </script>
+</body>
+</html>

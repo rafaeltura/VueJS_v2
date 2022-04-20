@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="../assets/vue.js"></script>
+
+    <title>Vue 2 - 5</title>
+
+    <style>
+        .verde {
+            background-color: green;
+        }
+
+        .azul {
+            background-color: blue;
+        }
+
+        .vermelho {
+            background-color: red;
+        }
+
+        .branco{
+            background-color: white;
+        }
+
+        .borda {
+            border:1px solid;
+        }
+
+        .div-principal{
+            width: 200px;
+            height: 200px;
+        }
+
+        .div-comum{
+            width: 50px;
+            height: 50px;
+            display: inline-block;
+        }
+        </style>
+  </head>
+
+  <body>
+    <div id="app">
+        <h3>Projeto {{ tituloProjeto }}</h3>
+        <p>{{ descricaoProjeto }}</p>
+        <hr />
+        <div class="borda div-principal" :class="cor">
+            <p>Cor: {{ cor }}</p>
+            <p>Posição X do mouse: {{ posicaoX }}</p>
+            <p>Posição Y do mouse: {{ posicaoY }}</p>
+        </div>
+        <hr />
+        <div class="borda div-comum verde" @click="mudarCor('verde')"></div>
+        <div 
+            class="borda div-comum azul" 
+            @mouseover="mudarCor('azul')" 
+            @mouseout="mudarCor()">
+        </div>
+        <div class="borda div-comum vermelho" @mousemove="coordenadas($event, 'vermelho')"></div>
+        <div class="borda div-comum branco" @click="mudarCor('branco')"></div>
+    </div>
+
+    <script>
+      let vue_model_1 = new Vue({
+        el: "#app",
+        data: {
+            tituloProjeto: "Hands On",
+            descricaoProjeto:
+                "Projeto para praticar o que foi visto da aula 1 até a 4.2",
+            cor: 'branco',
+            posicaoX: 0,
+            posicaoY: 0
+        },
+        methods: {
+            mudarCor (cor = 'branco') {
+                this.cor = cor;
+                this.posicaoX = 0;
+                this.posicaoY = 0;
+            },
+            coordenadas ({ clientX, clientY }, cor = 'vermelho') {
+                this.mudarCor(cor);
+                this.posicaoX = clientX;
+                this.posicaoY = clientY;
+            }
+        },
+      });
+    </script>
+  </body>
+</html>

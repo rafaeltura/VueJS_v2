@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="../assets/vue.js"></script>
+
+    <title>Vue 2 - 13.5</title>
+    <style>
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h3>Diretiva V-FOR - Parte IV</h3>
+        <p>
+            Implementação de laço de repetição.
+        </p>
+        <ul>
+            <li>Adicionar, remover e modificar elementos de um array, de modo que as ações sejam reativas aos elementos renderizados</li>
+            <li>Com a function <code>push(), pop(), slice(), splice() ....</code> do js, o VueJs irá entender a mudança, ou seja,irá renderizar novamente a lista. Sem essas functions não há a reatividade.</li>
+            <li>Para modificar algum indice do array e manter a reatividade, utiliza-se <code>[instancia_vue].$set([array], [indice do array], [novo valor]</code></li>
+        </ul>
+        <hr />
+
+        <ul>
+            <li v-for="({id, comentario}) in comentarios">
+                {{ id }} - {{ comentario }}
+            </li>
+        </ul>
+        <button @click="addComentario">Adicionar</button>
+        <hr />
+        
+    </div>
+    
+    <script>
+        let vue_model_1 = new Vue(
+            {
+                el: '#app', 
+                data: {
+                    comentarios: [
+                        {
+                            id: 1,
+                            comentario: "Comentário 1"
+                        },
+                        {
+                            id: 2,
+                            comentario: "Comentário 2"
+                        },
+                        {
+                            id: 3,
+                            comentario: "Comentário 3"
+                        },
+                    ]
+                },
+                methods: {
+                    addComentario () {
+                        const proximo = this.comentarios.length;
+                        this.comentarios.push({ 
+                            id: proximo, 
+                            comentario: `Comentário ${proximo}`
+                        });
+                    }
+                }
+            }
+        );
+    </script>
+</body>
+</html>

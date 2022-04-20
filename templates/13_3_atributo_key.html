@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="../assets/vue.js"></script>
+
+    <title>Vue 2 - 13.3</title>
+    <style>
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h3>Renderização de listas com o atributo KEY</h3>
+        <p>
+            O atributo KEY permite fornecer uma identidade para um trecho de tags html.
+            Quando utilizando listas.
+            Com isso é a renderização dos elementos será mais correta.
+        </p>
+        
+        <hr />
+        <span>Sem Key</span>
+        <ul>
+            <li 
+                style="border: 1px solid; margin-bottom: 13px;" 
+                v-for="({ id, descricao }) in publicacoes"
+            > 
+                <div>{{ descricao }}</div>
+                <hr>
+                <input type="text" />
+            </li>
+        </ul>
+        <button @click="misturarPubli1()">Misturar Publis1</button>
+
+        <br>
+
+        <span>Com Key</span>
+        <ul>
+            <li 
+                style="border: 1px solid; margin-bottom: 13px;" 
+                v-for="({ id, descricao }) in publicacoes2" 
+                :key="id"
+            > 
+                <div>{{ descricao }}</div>
+                <hr>
+                <input type="text" />
+            </li>
+        </ul>
+        <button @click="misturarPubli2()">Misturar Publis2</button>
+    </div>
+    
+    <script>
+        let vue_model_1 = new Vue(
+            {
+                el: '#app', 
+                data: {
+                    publicacoes: [
+                        {
+                            id: 1,
+                            descricao: 'Publicacao 1'
+                        },
+                        {
+                            id: 2,
+                            descricao: 'Publicacao 2'
+                        },
+                        {
+                            id: 3,
+                            descricao: 'Publicacao 3'
+                        }
+                    ],
+                    publicacoes2: [
+                        {
+                            id: 1,
+                            descricao: 'Publicacao 1'
+                        },
+                        {
+                            id: 2,
+                            descricao: 'Publicacao 2'
+                        },
+                        {
+                            id: 3,
+                            descricao: 'Publicacao 3'
+                        }
+                    ]
+                },
+                methods: {
+                    misturarPubli1 () {
+                        let misturado = [];
+                        misturado[0] = this.publicacoes[2];
+                        misturado[1] = this.publicacoes[0];
+                        misturado[2] = this.publicacoes[1];
+
+                        this.publicacoes = misturado;
+                    },
+                    misturarPubli2 () {
+                        let misturado = [];
+                        misturado[0] = this.publicacoes2[2];
+                        misturado[1] = this.publicacoes2[0];
+                        misturado[2] = this.publicacoes2[1];
+
+                        this.publicacoes2 = misturado;
+                    }
+                }
+            }
+        );
+    </script>
+</body>
+</html>

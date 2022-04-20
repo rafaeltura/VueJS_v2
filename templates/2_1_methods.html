@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="../assets/vue.js"></script>
+
+    <title>Vue 2 - 2.1</title>
+</head>
+<body>
+    <div id="app">
+        <p>Resultado da function somar convencional sem parenteses: {{ somar }}</p>
+        <p>Resultado da function somar convencional: {{ somar() }}</p>
+        <p>Resultado da function subtrair anônima sem parenteses: {{ subtrair }}</p>
+        <p>Resultado da function subtrair anônima: {{ subtrair() }}</p>
+        <p>Resultado da function multiplicar anônima sem parenteses: {{ multiplicar }}</p>
+        <p>Resultado da function multiplicar anônima: {{ multiplicar() }}</p>
+        <p>Resultado da function dividir de forma enxuta sem parenteses: {{ dividir }}</p>
+        <p>Resultado da function dividir de forma enxuta: {{ dividir() }}</p>
+    </div>
+    
+    <script>
+        let vue_model_1 = new Vue(
+            {
+                el: '#app', 
+                data: { 
+                },
+                methods: { // relacionar métodos para o elemento html que está sendo selecionado pela instância do vue
+                    somar: function somar() { //convencional
+                        return (4 + 2);
+                    },
+                    subtrair: function () { //anônima
+                        return (4 - 2);
+                    },
+                    multiplicar: () => { //arrow function
+                        return (4 * 2);
+                    },
+                    dividir() { //enxuta
+                        return (4 / 2);
+                    }
+                }
+            }
+        );
+    </script>
+</body>
+</html>

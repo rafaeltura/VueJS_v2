@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="../assets/vue.js"></script>
+
+    <title>Vue 2 - 13.4</title>
+    <style>
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h3>Diretiva V-FOR - Parte III</h3>
+        <p>
+            Implementação de laço de repetição.
+        </p>
+        <ul>
+            <li>iterações em um loop com valores numéricos</li>
+        </ul>
+        <hr />
+
+        <ul>
+            <li v-for="n in 10"> {{ n }}</li>
+        </ul>
+
+        <ul>
+            <li v-for="n in numero"> {{ n }}</li>
+        </ul>
+    </div>
+    
+    <script>
+        let vue_model_1 = new Vue(
+            {
+                el: '#app', 
+                data: {
+                    numero: 7
+                },
+                methods: {
+                }
+            }
+        );
+    </script>
+</body>
+</html>

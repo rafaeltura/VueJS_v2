@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="../assets/vue.js"></script>
+
+    <title>Vue 2 - 16</title>
+    <style>
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h3>Diretiva V-MODEL ou </h3>
+        <p>
+            Ela permite atualizações de mão dupla entre os atributos do vue e elementos do template, ou seja, mantêm sincronizada a instancia do vue com o template e vice versa.
+        </p>
+        
+        <ul>
+        </ul>
+
+        <hr />
+
+        {{ paciente }}
+        <!-- <input type="text" v-model:value="paciente" /> -->
+        <input type="text" v-model="paciente" />
+        
+        <hr />
+        Sexo selecionado: {{ sexo }} <br />
+        <input type="radio" value="F" v-model="sexo" /> Feminino <br />
+        <input type="radio" value="M" v-model="sexo" /> Masculino <br />
+        
+        <hr />
+        Opção selecionada: {{ option }} <br />
+        <select v-model="option">
+            <option value="" disabled>Selecione uma opção</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+        </select>
+
+        <hr />
+        Opções selecionados: {{ doencas }} <br />
+        <input type="checkbox" value="99" v-model="doencas" />Asma <br />
+        <input type="checkbox" value="100" v-model="doencas" />Bronquite <br />
+        <input type="checkbox" value="101" v-model="doencas" />Pneumonia <br />
+        <input type="checkbox" value="102" v-model="doencas" />Insuficiência Respiratória <br />
+
+        <hr />
+        Texto digitado: {{ diagnostico }} <br />
+        <textarea cols="60" rows="30" v-model="diagnostico"></textarea><br />
+
+    </div>
+    
+    <script>
+        let vue_model_1 = new Vue(
+            {
+                el: '#app', 
+                data: {
+                    paciente: 'João da Silva',
+                    sexo: '',
+                    option: '',
+                    doencas: ['99', '100'],
+                    diagnostico: ''
+                },
+                methods: {},
+                computed: {}
+            }
+        );
+    </script>
+</body>
+</html>
